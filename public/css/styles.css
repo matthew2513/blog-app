@@ -1,0 +1,23 @@
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+li {
+  list-style: none;
+}
+
+.word-wrap {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+#goToTopBtn {
+  background-color: white;
+  color: #0000ee;
+  text-decoration: underline;
+  border: none;
+  cursor: pointer;
+}

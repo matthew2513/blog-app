@@ -1,0 +1,76 @@
+<%- include("./partials/header.ejs") %>
+
+<main>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <% if (locals.articles.length > 0) { %>
+      <ul class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <% articles.forEach(post => { %>
+        <li id="article-<%= post.id %>">
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h2 class="title"><%= post.title %></h2>
+                <p class="card-text description"><%= post.description %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <p class="text-body-secondary"><%= post.author %></p>
+                  <p class="text-body-secondary"><%= post.date %></p>
+                </div>
+                <div class="d-flex justify-content-start align-items-center">
+                  <div class="btn-group">
+                    <a
+                      href="/article/<%= post.id %>"
+                      class="btn btn-outline-secondary me-1"
+                    >
+                      View
+                    </a>
+                    <a
+                      href="/edit/<%= post.id %>"
+                      class="btn btn-outline-primary ms-1 me-1"
+                    >
+                      Edit
+                    </a>
+                    <button
+                      class="btn btn-outline-danger ms-1"
+                      onclick="deleteArticle('<%= post.id %>')"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <% }) %>
+      </ul>
+      <% } else { %>
+      <p>No articles yet. Submit one!</p>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<script>
+  function deleteArticle(articleId) {
+    if (confirm("Are you sure you want to delete this post?")) {
+      fetch(`/delete/${articleId}`, { method: "DELETE" })
+        .then((response) => response.json()) // Parse JSON response
+        .then((data) => {
+          if (data.message) {
+            // Check for the message field
+            const articleElement = document.getElementById(
+              `article-${articleId}`
+            );
+            if (articleElement) {
+              articleElement.remove(); // Remove the article from the DOM
+            }
+          } else {
+            alert("Failed to delete the article.");
+          }
+        });
+    }
+  }
+</script>
+
+<%- include("./partials/footer.ejs") %>

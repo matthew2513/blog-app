@@ -1,0 +1,49 @@
+<%- include("./partials/header.ejs") %>
+
+<main>
+  <div class="container">
+    <form action="/send" method="post">
+      <div class="form-floating mb-3">
+        <input
+          name="name"
+          type="text"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+          required
+        />
+        <label for="floatingPassword">Name</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          name="email"
+          type="email"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name@example.com"
+          required
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+
+      <div class="form-floating">
+        <textarea
+          name="message"
+          class="form-control"
+          placeholder="Leave a message"
+          id="floatingTextarea2"
+          style="height: 100px"
+          required
+        ></textarea>
+        <label for="floatingTextarea2">Message</label>
+      </div>
+      <div class="col">
+        <div class="p-2"></div>
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </div>
+</main>
+
+<%- include("./partials/footer.ejs") %>
