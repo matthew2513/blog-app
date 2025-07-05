@@ -12,7 +12,10 @@ async function viewArticle(req, res) {
     const data = await fs.readFile(dataPath, "utf-8");
     const article = JSON.parse(data).find((item) => item.id === id);
 
-    res.render("posts/view-article", { article });
+    //view 5 recent articles
+    const lastFiveArticles = JSON.parse(data).slice(-5);
+
+    res.render("posts/view-article", { article, lastFiveArticles });
   } catch (error) {
     console.error(error);
   }

@@ -17,9 +17,4 @@ async function getBlogPage(req, res) {
   }
 }
 
-//go to create article page
-function getCreateArticle(req, res) {
-  res.render("posts/create-article");
-}
-
-export { getBlogPage, getCreateArticle };
+export { getBlogPage };

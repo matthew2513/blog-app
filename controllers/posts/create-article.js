@@ -6,6 +6,11 @@ import { v4 as uuidv4 } from "uuid";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataPath = path.join(__dirname, "../../data/articles.json");
 
+//create article page
+function getCreateArticle(req, res) {
+  res.render("posts/create-article");
+}
+
 async function addArticle(req, res) {
   try {
     const { title, author, description, content } = req.body;
@@ -53,4 +58,4 @@ function currentDate() {
   } ${today.getDate()}, ${today.getFullYear()}`;
 }
 
-export { addArticle };
+export { getCreateArticle, addArticle };
