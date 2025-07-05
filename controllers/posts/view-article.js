@@ -5,21 +5,17 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataPath = path.join(__dirname, "../../data/articles.json");
 
-//view all blog posts
-async function getBlogPage(req, res) {
+async function viewArticle(req, res) {
+  const id = req.params.id;
+
   try {
     const data = await fs.readFile(dataPath, "utf-8");
-    const articles = JSON.parse(data);
+    const article = JSON.parse(data).find((item) => item.id === id);
 
-    res.render("posts/blog", { articles });
+    res.render("posts/view-article", { article });
   } catch (error) {
     console.error(error);
   }
 }
 
-//go to create article page
-function getCreateArticle(req, res) {
-  res.render("posts/create-article");
-}
-
-export { getBlogPage, getCreateArticle };
+export { viewArticle };
