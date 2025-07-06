@@ -1,7 +1,7 @@
-import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { v4 as uuidv4 } from "uuid";
+import { readJSONFile, writeJSONFile } from "../../utils/jsonHelper.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataPath = path.join(__dirname, "../../data/articles.json");
@@ -23,12 +23,11 @@ async function addArticle(req, res) {
       content,
     };
 
-    const data = await fs.readFile(dataPath, "utf-8");
-    const articles = JSON.parse(data);
+    const articles = await readJSONFile(dataPath);
 
     articles.push(newArticle);
 
-    await fs.writeFile(dataPath, JSON.stringify(articles, null, 2));
+    await writeJSONFile(dataPath, articles);
 
     res.status(200).redirect("/posts/blog");
   } catch (error) {

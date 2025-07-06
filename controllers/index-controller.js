@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
+import { readJSONFile, writeJSONFile } from "../utils/jsonHelper.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataPathArticles = path.join(__dirname, "../data/articles.json");
@@ -8,8 +9,8 @@ const dataPathContacts = path.join(__dirname, "../data/contacts.json");
 
 async function getHomePage(req, res) {
   try {
-    const data = await fs.readFile(dataPathArticles, "utf-8");
-    const firstTwoArticles = JSON.parse(data).splice(0, 2);
+    const articles = await readJSONFile(dataPathArticles);
+    const firstTwoArticles = articles.splice(0, 2);
 
     res.render("index", { firstTwoArticles });
   } catch (error) {
@@ -30,12 +31,11 @@ async function submitContact(req, res) {
     const { fName, lName, email, subject, message } = req.body;
     const newContact = { fName, lName, email, subject, message };
 
-    const data = await fs.readFile(dataPathContacts, "utf-8");
-    const contacts = JSON.parse(data);
+    const contacts = await readJSONFile(dataPathContacts);
 
     contacts.push(newContact);
 
-    await fs.writeFile(dataPathContacts, JSON.stringify(contacts, null, 2));
+    await writeJSONFile(dataPathContacts, contacts);
 
     res.status(200).redirect("/contact");
   } catch (error) {
