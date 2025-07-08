@@ -1,0 +1,61 @@
+<%- include("../partials/header.ejs") %>
+
+<main class="container">
+  <div class="row g-5">
+    <div class="col-md-8">
+      <div
+        class="p-4 p-md-5 mb-4 rounded feature-banner d-flex align-items-center"
+      ></div>
+      <% if (locals.article) { %>
+      <article class="blog-post">
+        <h1 class="mb-1 text-light"><%= article.title %></h1>
+        <p class="blog-post-meta">
+          <%= article.date %> by <a href="#"><%= article.author %></a>
+        </p>
+        <p><%= article.description %></p>
+        <hr />
+        <p><%= article.content %></p>
+      </article>
+      <% } %>
+      <a
+        class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+        href="#"
+        >Back to Top</a
+      >
+    </div>
+    <div class="col-md-4">
+      <div>
+        <h4 class="fst-italic">Recent posts</h4>
+        <% if (locals.recentArticles) { %>
+        <ul class="list-unstyled">
+          <% recentArticles.forEach(article => { %>
+          <li>
+            <a
+              class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+              href="/posts/view-article/<%= article.id %>"
+            >
+              <svg
+                aria-hidden="true"
+                class="bd-placeholder-img"
+                height="96"
+                preserveAspectRatio="xMidYMid slice"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="100%" height="100%" fill="#777"></rect>
+              </svg>
+              <div class="col-lg-8">
+                <h6 class="mb-0 text-light"><%= article.title %></h6>
+                <small class="text-body-secondary"><%= article.date %></small>
+              </div>
+            </a>
+          </li>
+          <% }) %>
+        </ul>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include("../partials/footer.ejs") %>

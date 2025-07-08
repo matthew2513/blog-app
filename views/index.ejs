@@ -1,0 +1,206 @@
+<%- include("./partials/header.ejs") %>
+
+<main class="container">
+  <%# hero section%>
+  <div class="hero-bg bg-dark text-secondary px-4 py-5 text-center rounded">
+    <div class="py-5">
+      <h1 class="display-5 fw-bold text-white">Hello, World!</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="fs-5 mb-4 text-white">
+          Found this page? Congrats — it’s not a bug, it’s a blog. <br />
+          <strong>404 Error Not Found</strong> is where code chaos meets
+          clarity. Let's write code, break things, Google errors, and act like
+          we knew what we were doing all along. <br />
+          <strong class="text-danger"
+            >Warning: May contain too many console.logs and not enough
+            sleep.</strong
+          >
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <a
+            href="/posts/blog"
+            type="button"
+            class="btn btn-outline-light btn-lg px-4"
+          >
+            See More
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# features section %> <%# features section %>
+  <div class="container px-4" id="custom-cards">
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+      <div class="col">
+        <div
+          class="feature-bg card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        >
+          <div
+            class="d-flex flex-column justify-content-center align-items-center text-center h-100 p-5 pb-3 text-white text-shadow-1"
+          >
+            <h3 class="mb-3 display-6 lh-1 fw-bold">Definitely Not a Bug 🐞</h3>
+            <p>
+              If you clicked this, you're officially a curious dev. Reward: zero
+              bugs, one meme, and a cookie (not really).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div
+          class="feature-bg card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        >
+          <div
+            class="d-flex flex-column justify-content-center align-items-center text-center h-100 p-5 pb-3 text-white text-shadow-1"
+          >
+            <h3 class="mb-3 display-6 lh-1 fw-bold">Blog</h3>
+            <p>
+              Read stories, tutorials, and rants from the bug trenches. Updated
+              semi-regularly. Probably.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div
+          class="feature-bg card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        >
+          <div
+            class="d-flex flex-column justify-content-center align-items-center text-center h-100 p-5 pb-3 text-white text-shadow-1"
+          >
+            <h3 class="mb-3 display-6 lh-1 fw-bold">About</h3>
+            <p>
+              What is this site? Who made it? Why 404? Answers you didn’t ask
+              for — right here.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# about section %>
+  <div class="container my-5" id="about">
+    <div
+      class="row bg-dark text-light p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg"
+    >
+      <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+        <h1 class="display-4 fw-bold lh-1 text-light">About the Chaos</h1>
+        <p class="lead">
+          This blog wasn’t built in a day — but plenty of bugs were.
+          <strong>404 Error Not Found</strong> is a chaotic-good corner of the
+          internet where code breaks, learning happens, and coffee runs deep.
+          Want to know who’s behind the commits and caffeine? Hit that button to
+          read the full backstory.
+        </p>
+        <div
+          class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3"
+        >
+          <a
+            href="/about"
+            class="btn btn-outline-secondary d-inline-flex align-items-center"
+            type="button"
+          >
+            Learn More
+            <i class="fa-solid fa-arrow-right px-2"></i>
+          </a>
+        </div>
+        <div
+          class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3"
+        >
+          <a
+            href="#"
+            class="socials btn btn-outline-secondary rounded-circle d-flex justify-content-center align-items-center p-0"
+          >
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a
+            href="#"
+            class="socials btn btn-outline-secondary rounded-circle d-flex justify-content-center align-items-center p-0"
+          >
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a
+            href="#"
+            class="socials btn btn-outline-secondary rounded-circle d-flex justify-content-center align-items-center p-0"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a
+            href="#"
+            class="socials btn btn-outline-secondary rounded-circle d-flex justify-content-center align-items-center p-0"
+          >
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a
+            href="mailto:fakemail@gmail.com"
+            class="socials btn btn-outline-secondary rounded-circle d-flex justify-content-center align-items-center p-0"
+          >
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+        <img
+          class="rounded-lg-3"
+          src="/assets/images/wallpaper.jpg"
+          alt=""
+          width="720"
+        />
+      </div>
+    </div>
+  </div>
+
+  <%# blog section %>
+  <div class="row mb-2">
+    <% if (locals.firstTwoArticles) { %> <% firstTwoArticles.forEach(article =>
+    { %>
+    <div class="col-md-6">
+      <div
+        class="row g-0 bg-dark text-light border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+      >
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">
+            <%= article.author %>
+          </strong>
+          <h3 class="mb-0"><%= article.title %></h3>
+          <div class="mb-1 text-light"><%= article.date %></div>
+          <p class="card-text mb-auto text-light"><%= article.description %></p>
+          <a
+            href="/posts/view-article/<%= article.id %>"
+            class="link-secondary link-offset-2 stretched-link"
+          >
+            Continue reading
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <img
+            aria-label="Placeholder: Thumbnail"
+            class="bd-placeholder-img"
+            height="250"
+            preserveAspectRatio="xMidYMid slice"
+            role="img"
+            width="200"
+            src="/assets/images/wallpaper.jpg"
+            alt="thumbnail"
+          />
+        </div>
+      </div>
+    </div>
+    <% }) %> <% } %>
+    <p>
+      <a
+        class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+        href="posts/blog"
+        >See all posts
+        <i class="fa-solid fa-arrow-right px-2"></i>
+      </a>
+    </p>
+  </div>
+</main>
+
+<%- include("./partials/footer.ejs") %>
