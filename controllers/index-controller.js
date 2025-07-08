@@ -1,4 +1,3 @@
-import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { readJSONFile, writeJSONFile } from "../utils/jsonHelper.js";
@@ -12,9 +11,10 @@ async function getHomePage(req, res) {
     const articles = await readJSONFile(dataPathArticles);
     const firstTwoArticles = articles.splice(0, 2);
 
-    res.render("index", { firstTwoArticles });
+    res.status(200).render("index", { firstTwoArticles });
   } catch (error) {
     console.error(error);
+    res.status(500).send("Server Error");
   }
 }
 

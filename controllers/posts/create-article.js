@@ -8,7 +8,7 @@ const dataPath = path.join(__dirname, "../../data/articles.json");
 
 //create article page
 function getCreateArticle(req, res) {
-  res.render("posts/create-article");
+  res.render("posts/create-edit-article", { article: {}, isEdit: false });
 }
 
 async function addArticle(req, res) {
@@ -32,6 +32,7 @@ async function addArticle(req, res) {
     res.status(200).redirect("/posts/blog");
   } catch (error) {
     console.error(error);
+    res.status(500).send("Server Error");
   }
 }
 

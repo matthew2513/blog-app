@@ -13,11 +13,12 @@ async function viewArticle(req, res) {
     const article = articles.find((item) => item.id === id);
 
     //view 5 recent articles
-    const lastFiveArticles = articles.slice(-5);
+    const recentArticles = articles.slice(-5);
 
-    res.render("posts/view-article", { article, lastFiveArticles });
+    res.status(200).render("posts/view-article", { article, recentArticles });
   } catch (error) {
     console.error(error);
+    res.status(500).send("Server Error");
   }
 }
 

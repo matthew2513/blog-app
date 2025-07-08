@@ -10,9 +10,10 @@ async function getBlogPage(req, res) {
   try {
     const articles = await readJSONFile(dataPath);
 
-    res.render("posts/blog", { articles });
+    res.status(200).render("posts/blog", { articles });
   } catch (error) {
     console.error(error);
+    res.status(500).send("Server Error");
   }
 }
 

@@ -13,16 +13,19 @@ async function getEditArticle(req, res) {
     const articles = await readJSONFile(dataPath);
     const article = articles.find((item) => item.id === id);
 
-    res.render("posts/edit-article", { article });
+    res
+      .status(200)
+      .render("posts/create-edit-article", { article, isEdit: true });
   } catch (error) {
     console.error(error);
+    res.status(500).send("Server Error");
   }
 }
 
 //edit article
 async function editArticle(req, res) {
   const id = req.params.id;
-  const { title, author, description, content } = req.body;
+  const { title, description, content } = req.body;
 
   try {
     const articles = await readJSONFile(dataPath);
@@ -32,20 +35,20 @@ async function editArticle(req, res) {
       articles[index] = {
         id,
         title,
-        author,
+        author: articles[index].author,
         date: articles[index].date,
         description,
         content,
       };
 
       await writeJSONFile(dataPath, articles);
-      res.redirect("/posts/blog");
+      res.status(200).redirect("/posts/blog");
     } else {
       res.status(404).send("Article not found");
     }
   } catch (error) {
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    res.status(500).send("Server Error");
   }
 }
 
